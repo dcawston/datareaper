@@ -1,0 +1,87 @@
+@CHARSET "UTF-8";
+* {
+	border: none;
+	font-family: Arial, Vedana, sans, sans-serif;
+}
+
+hmtl, body {
+	margin: 0;
+}
+
+.reaper-header {
+	border-bottom: 1px solid grey;
+	z-index: 150;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+}
+.reaper-header form {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.reaper-header .reaper-url {
+	margin: 0;
+	padding: .2em;
+	margin: 0 0.3em;
+	font-size: 1.4em;
+	flex-grow: 1;
+}
+.reaper-header .reaper-go-btn {
+	font-size: 1.6em;
+	padding: 0.2em 1.6em;
+	background-color: #1060aa;
+	color: #fff;
+}
+.reaper-header .reaper-url:focus {
+	border: 0;
+	outline: 0;
+}
+
+.reaper-dyn-page {
+	background-color: #eee;
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	align-items: stretch;
+}
+.reaper-dyn-page .reaper-padder {
+	height: 2.5em;
+	display: block;
+}
+.reaper-dyn-page iframe {
+	flex-grow: 1;
+	width: 100%;
+	overflow: scroll;
+}
+
+#overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+#overlay #viewport {
+	content: '';
+	box-shadow: rgba(255, 255, 255, 0.6) 0 0 0 30000px;
+	width: 200px;
+	height: 183px;
+	border: 2px dashed black;
+	top: 77px;
+	left: 625px;
+	display: block;
+	position: fixed;
+}
+
+.reaper-hover-elem {
+	border: 1px dashed black;
+}

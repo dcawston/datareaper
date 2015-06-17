@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Data Reaper</title>
+		<link rel="stylesheet"  type="text/css" href="./style.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script type="text/javascript" src="ui.js"></script>
+	</head>
+	<body>
+		
+		<div class="reaper-header">
+			<form>
+				<input type="text" placeholder="Enter URL" class="reaper-url" />
+				<input type="submit" value="Go" class="reaper-go-btn" />
+			</form>
+		</div>
+		
+		<div class="reaper-dyn-page">
+			<div class="reaper-padder"></div>
+			<iframe></iframe>
+		</div>
+		
+		<div id="overlay">
+			<div id="viewport"></div>
+		</div>
+		
+	</body>
+</html>
