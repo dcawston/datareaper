@@ -1,0 +1,26 @@
+{
+  "name": "datareaper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "forward-proxy": "^2.1.1",
+    "http-proxy": "^1.11.1",
+    "request": "^2.58.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcawston/datareaper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dcawston/datareaper/issues"
+  },
+  "homepage": "https://github.com/dcawston/datareaper"
+}
