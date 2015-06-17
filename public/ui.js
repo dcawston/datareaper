@@ -13,7 +13,7 @@ $(document).ready(function() {
 				$_.mousemove(function(e) {
 					$_.find('.reaper-hover-elem').removeClass('reaper-hover-elem').css('outline', 'none');
 					elem = subDocument.elementFromPoint(e.clientX, e.clientY);
-					$(elem).addClass('reaper-hover-elem').css('outline', '1px dashed black');
+					$(elem).addClass('reaper-hover-elem').css('outline', '4px solid green');
 				});
 				
 				$_.find('body *').mouseleave(function() {
@@ -27,8 +27,8 @@ $(document).ready(function() {
 					
 					_top = $(elem).offset().top +
 							$('.reaper-header').outerHeight() -
-							$_.scrollTop() - 2;
-					_left = $(elem).offset().left - 2;
+							$_.scrollTop();
+					_left = $(elem).offset().left;
 					
 					$('#overlay #viewport').css('top', _top).css('left', _left);
 					$('#overlay #viewport').css('width', $(elem).outerWidth()).css('height', $(elem).outerHeight());

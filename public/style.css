@@ -75,13 +75,9 @@ hmtl, body {
 	box-shadow: rgba(255, 255, 255, 0.6) 0 0 0 30000px;
 	width: 200px;
 	height: 183px;
-	border: 2px dashed black;
+	outline: 2px solid blue;
 	top: 77px;
 	left: 625px;
 	display: block;
 	position: fixed;
-}
-
-.reaper-hover-elem {
-	border: 1px dashed black;
 }
