@@ -7,7 +7,7 @@ var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/:url', function(req,res) {
+app.get('/:url(*)', function(req,res) {
 	
 	var url_param = req.params.url;
 
