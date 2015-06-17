@@ -58,8 +58,16 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$('.reaper-overlay').click(function() {
-		$(this).fadeOut();
+	$('.reaper-overlay-trigger').click(function() {
+		$('.reaper-overlay').fadeOut();
+	});
+	
+	$('.reaper-controls .reaper-add').click(function() {
+		if ( $('.reaper-sidebar').hasClass('open') ) {
+			$('.reaper-sidebar').css('right', '-450px').removeClass('open');
+		} else {
+			$('.reaper-sidebar').css('right', '0px').addClass('open');
+		}
 	});
 	
 	__parts = window.location.href.split('?');
