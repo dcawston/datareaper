@@ -1,3 +1,23 @@
+function getPathTo(element) {
+    if (element.id !== '') {
+        return "//*[@id='" + element.id + "']";
+    }
+    if (element === document.body) {
+        return element.tagName.toLowerCase();
+    }
+    var ix = 0;
+    var siblings = element.parentNode.childNodes;
+    for (var i= 0; i<siblings.length; i++) {
+        var sibling= siblings[i];
+        
+        if (sibling===element) return getPathTo(element.parentNode) + '/' + element.tagName.toLowerCase() + '[' + (ix + 1) + ']';
+        
+        if (sibling.nodeType===1 && sibling.tagName === element.tagName) {
+            ix++;
+        }
+    }
+}
+
 $(document).ready(function() {
 	
 	function showControls($_, $elem) {
@@ -47,6 +67,12 @@ $(document).ready(function() {
 					$('.reaper-overlay').fadeIn();
 					
 					showControls($_, $(elem));
+					
+					var root= document.compatMode==='CSS1Compat' ? document.documentElement : document.body;
+                    var path= getPathTo(elem);
+                    var message = 'You clicked the element ' + path;
+                    alert(message);
+
 					
 					e.preventDefault();
 					return false;

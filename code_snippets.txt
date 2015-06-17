@@ -1,0 +1,5 @@
+//find all post titles from reddit, put them into an iterator.
+var xPathRes = document.evaluate ('.//*[@id="siteTable"]/div[*]/div[2]/p[1]/a/text()', document, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+
+//read next post title in iterator.
+xPathRes.IterateNext();
