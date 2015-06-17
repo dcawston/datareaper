@@ -1,4 +1,12 @@
 @CHARSET "UTF-8";
+@import url(http://weloveiconfonts.com/api/?family=iconicfill);
+
+/* iconicfill */
+[class*="iconicfill-"]:before {
+  font-family: 'IconicFill', sans-serif;
+  padding: .2em .3em;
+}
+
 * {
 	border: none;
 	font-family: Arial, Vedana, sans, sans-serif;
@@ -6,6 +14,10 @@
 
 hmtl, body {
 	margin: 0;
+}
+
+.hidden {
+	display: none;
 }
 
 .reaper-header {
@@ -62,7 +74,7 @@ hmtl, body {
 	overflow: scroll;
 }
 
-#overlay {
+.reaper-overlay {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -70,7 +82,7 @@ hmtl, body {
 	height: 100%;
 	display: none;
 }
-#overlay #viewport {
+.reaper-viewport {
 	content: '';
 	box-shadow: rgba(255, 255, 255, 0.6) 0 0 0 30000px;
 	width: 200px;
@@ -80,4 +92,18 @@ hmtl, body {
 	left: 625px;
 	display: block;
 	position: fixed;
+}
+
+.reaper-controls {
+	border: 1px solid #1060aa;
+	border-radius: 3px;
+	background-color: #4090ff;
+	position: fixed;
+	color: #fff;
+	font-size: 1.4em;
+}
+.reaper-controls span {
+}
+.reaper-controls span:hover {
+	background-color: #2070bb;
 }

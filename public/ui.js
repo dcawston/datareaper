@@ -1,5 +1,17 @@
 $(document).ready(function() {
 	
+	function showControls($_, $elem) {
+		
+		_top = $('.reaper-viewport').offset().top + 
+				$('.reaper-viewport').outerHeight() + 4;
+		_left = $('.reaper-viewport').offset().left + 
+				$('.reaper-viewport').outerWidth()/2 - 
+				$('.reaper-controls').outerWidth()/2;
+		
+		$('.reaper-controls').css('top', _top).css('left', _left);
+		
+	}
+	
 	$('.reaper-header form').submit(function(e) {
 		$('.reaper-dyn-content').attr('src', '/' + $(this).find('.reaper-url').val());
 		
@@ -30,9 +42,11 @@ $(document).ready(function() {
 							$_.scrollTop();
 					_left = $(elem).offset().left;
 					
-					$('#overlay #viewport').css('top', _top).css('left', _left);
-					$('#overlay #viewport').css('width', $(elem).outerWidth()).css('height', $(elem).outerHeight());
-					$('#overlay').fadeIn();
+					$('.reaper-viewport').css('top', _top).css('left', _left);
+					$('.reaper-viewport').css('width', $(elem).outerWidth()).css('height', $(elem).outerHeight());
+					$('.reaper-overlay').fadeIn();
+					
+					showControls($_, $(elem));
 					
 					e.preventDefault();
 					return false;
@@ -44,7 +58,7 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	$('#overlay').click(function() {
+	$('.reaper-overlay').click(function() {
 		$(this).fadeOut();
 	});
 	
