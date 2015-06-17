@@ -15,7 +15,7 @@ app.get('/:url', function(req,res) {
 		request({
 			url: "http://" + url_param
 		}).on('error', function(err) {
-			res.end(err);
+			res.send(err);
 		}).pipe(res);
 	}
 
