@@ -3,3 +3,39 @@ var xPathRes = document.evaluate ('.//*[@id="siteTable"]/div[*]/div[2]/p[1]/a/te
 
 //read next post title in iterator.
 xPathRes.IterateNext();
+
+//find differences in two strings
+function strDiff(first, second) {
+    if(first==second)
+        return -1;
+    first  = first.toString();
+    second = second.toString();
+    var minLen = Math.min(first.length,second.length);
+    for(var i = 0; i<minLen; i++) {
+        if(first.charAt(i) != second.charAt(i)) {
+            return i;
+        }
+    }
+    return minLen;
+}
+
+//replace character at any given index
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
+
+//use string diif and replace at to guess where the wildcard character should go
+txt = strDiff($('#old').val(), $('#new').val());
+  
+    var el =  document.createElement("h5")
+    el.id="result";
+    if ($('#old').val().charAt(parseInt(txt)-1) == '[') {
+        el.innerHTML = $('#old').val().replaceAt(parseInt(txt),"*");
+    } else {
+        el.innerHTML = $('#old').val();
+    }
+    document.body.appendChild(el);
+	
+	
+	
+//JSFiddle demo: https://jsfiddle.net/DelightedD0D/SWX77/4/
