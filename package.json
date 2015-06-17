@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "express": "^4.12.4",
     "forward-proxy": "^2.1.1",
     "http-proxy": "^1.11.1",
+    "path": "^0.11.14",
     "request": "^2.58.0"
   },
   "devDependencies": {},

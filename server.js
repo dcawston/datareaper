@@ -1,20 +1,30 @@
 var http = require('http');
 var url = require('url');
 var request = require('request');
+var express = require('express');
+var path = require('path');
+var app = express();
 
-http.createServer(onRequest).listen(3000);
+app.use(express.static(path.join(__dirname, 'public')));
 
-function onRequest(req, res) {
+app.get('/:url', function(req,res) {
+	
+	var url_param = req.params.url;
 
-    var queryData = url.parse(req.url, true).query;
-    if (queryData.url) {
-        request({
-            url: queryData.url
-        }).on('error', function(e) {
-            res.end(e);
-        }).pipe(res);
-    }
-    else {
-        res.end("no url found");
-    }
-}
+	if(url) {
+		request({
+			url: "http://" + url_param
+		}).on('error', function(err) {
+			res.end(err);
+		}).pipe(res);
+	}
+
+});
+
+
+http.createServer(app).listen(3000, function() {
+	console.log("Server listening on port 3000");
+});
+
+
+
