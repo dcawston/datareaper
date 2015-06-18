@@ -71,7 +71,7 @@ $(document).ready(function() {
 					var root= document.compatMode==='CSS1Compat' ? document.documentElement : document.body;
                     var path= getPathTo(elem);
                     var message = 'You clicked the element ' + path;
-                    alert(message);
+                    $('.reaper-panel').html(message);
 
 					
 					e.preventDefault();
