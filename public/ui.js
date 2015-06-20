@@ -5,6 +5,15 @@ String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
+function xPathToCss(xpath) {
+    return xpath
+        .replace(/\[(\d+?)\]/g, function(s,m1){ return '['+(m1-1)+']'; })
+        .replace(/\/{2}/g, '')
+        .replace(/\/+/g, ' > ')
+        .replace(/@/g, '')
+        .replace(/\[(\d+)\]/g, ':eq($1)')
+        .replace(/^\s+/, '');
+}
 
 function newGuess(first, second) {
 	txt = strDiff(first, second);
@@ -105,7 +114,12 @@ $(document).ready(function() {
 					var root= document.compatMode==='CSS1Compat' ? document.documentElement : document.body;
                     var path= getPathTo(elem);
                     var message = 'You clicked the element ' + path;
+					if (!e.ctrlKey) {
+						elementsToCompare.length = 0;
+					}
+					
 					elementsToCompare.push(path);
+					
 					if (elementsToCompare.length == 2) {
 						tmpGuess = newGuess(elementsToCompare[0],elementsToCompare[1]);
 						message = tmpGuess;
@@ -114,6 +128,7 @@ $(document).ready(function() {
 						var tmpGuess2 = newGuess(elementsToCompare[elementsToCompare.length - 1], tmpGuess);
 						tmpGuess = newGuess(tmpGuess2, tmpGuess);
 						message = tmpGuess;
+						message = xPathToCss(message);
 					}
                     $('.reaper-panel').html(message);
 
