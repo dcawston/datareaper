@@ -1,3 +1,37 @@
+var elementsToCompare = [];
+var tmpGuess;
+
+String.prototype.replaceAt=function(index, character) {
+    return this.substr(0, index) + character + this.substr(index+character.length);
+}
+
+
+function newGuess(first, second) {
+	txt = strDiff(first, second);
+	var el;
+  
+    if (first.charAt(parseInt(txt)-1) == '[') {
+        el = first.replaceAt(parseInt(txt),"*");
+    } else {
+        el = first;
+    }
+    return el;
+}
+
+function strDiff(first, second) {
+    if(first==second)
+        return -1;
+    first  = first.toString();
+    second = second.toString();
+    var minLen = Math.min(first.length,second.length);
+    for(var i = 0; i<minLen; i++) {
+        if(first.charAt(i) != second.charAt(i)) {
+            return i;
+        }
+    }
+    return minLen;
+}
+
 function getPathTo(element) {
     if (element.id !== '') {
         return "//*[@id='" + element.id + "']";
@@ -71,6 +105,16 @@ $(document).ready(function() {
 					var root= document.compatMode==='CSS1Compat' ? document.documentElement : document.body;
                     var path= getPathTo(elem);
                     var message = 'You clicked the element ' + path;
+					elementsToCompare.push(path);
+					if (elementsToCompare.length == 2) {
+						tmpGuess = newGuess(elementsToCompare[0],elementsToCompare[1]);
+						message = tmpGuess;
+					}
+					if (elementsToCompare.length > 2) {
+						var tmpGuess2 = newGuess(elementsToCompare[elementsToCompare.length - 1], tmpGuess);
+						tmpGuess = newGuess(tmpGuess2, tmpGuess);
+						message = tmpGuess;
+					}
                     $('.reaper-panel').html(message);
 
 					
