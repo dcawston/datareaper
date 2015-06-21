@@ -5,16 +5,6 @@ String.prototype.replaceAt=function(index, character) {
     return this.substr(0, index) + character + this.substr(index+character.length);
 }
 
-function xPathToCss(xpath) {
-    return xpath
-        .replace(/\[(\d+?)\]/g, function(s,m1){ return '['+(m1-1)+']'; })
-        .replace(/\/{2}/g, '')
-        .replace(/\/+/g, ' > ')
-        .replace(/@/g, '')
-        .replace(/\[(\d+)\]/g, ':eq($1)')
-        .replace(/^\s+/, '');
-}
-
 function newGuess(first, second) {
 	txt = strDiff(first, second);
 	var el;
@@ -128,7 +118,6 @@ $(document).ready(function() {
 						var tmpGuess2 = newGuess(elementsToCompare[elementsToCompare.length - 1], tmpGuess);
 						tmpGuess = newGuess(tmpGuess2, tmpGuess);
 						message = tmpGuess;
-						message = xPathToCss(message);
 					}
                     $('.reaper-panel').html(message);
 
