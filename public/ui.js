@@ -140,15 +140,11 @@ $(document).ready(function() {
 	/**
 	 * Magical method to dynamically load
 	 * a page upon request
-	 * 
-	 * @todo: Make it work with requests that
-	 * also contain a '?' in their URL
 	 */
-	var __parts = window.location.href.split('?');
-	if ( __parts.length == 2 ) {
-		$('.reaper-url').val(__parts[1]);
+	var __i = window.location.href.indexOf('?');
+	if ( __i != -1 ) {
+		$('.reaper-url').val( window.location.href.substr(++__i) );
 		$('.reaper-header form').submit();
 	}
-	__parts = void(0);
 	
 });
