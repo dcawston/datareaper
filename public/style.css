@@ -35,7 +35,6 @@ hmtl, body {
 	align-items: center;
 }
 .reaper-header .reaper-url {
-	margin: 0;
 	padding: .2em;
 	margin: 0 0.3em;
 	font-size: 1.4em;
@@ -128,4 +127,49 @@ hmtl, body {
 	height: 100%;
 	width: 450px;
 	color: #fff;
+}
+
+.reaper-collapse {
+	padding: 1em;
+}
+.reaper-collapse .reaper-collapse-header {
+	background-color: #666;
+	color: #fff;
+	padding: .3em .4em;
+}
+.reaper-collapse .reaper-collapse-header input {
+	font-size: 1.3em;
+	color: #fff;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+.reaper-collapse .reaper-collapse-header input:focus {
+	outline: none;
+}
+.reaper-collapse .reaper-collapse-body {
+	background-color: #ccc;
+	color: #333;
+	font-size: 1em;
+	padding: .3em;
+}
+.reaper-collapse .reaper-collapse-body label {
+	display: block;
+	margin: .5em 0 0;
+	border-bottom: 1px solid #aaa;
+}
+.reaper-collapse .reaper-collapse-body input[type="text"] {
+	display: block;
+	font-size: 1em;
+	color: #666;
+	background: transparent;
+	margin: .2em 0;
+	padding: 0;
+	width: 100%;
+	transition: .1s linear;
+}
+.reaper-collapse .reaper-collapse-body input[type="text"]:focus {
+	outline: none;
+	color: #333;
 }
