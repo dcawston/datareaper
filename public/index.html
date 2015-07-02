@@ -26,11 +26,6 @@
 		<div class="reaper-overlay">
 			<div class="reaper-viewport"></div>
 			<div class="reaper-overlay-trigger"></div>
-			<div class="reaper-controls">
-				<span class="reaper-add iconicfill-plus"></span>
-				<span class="reaper-edit iconicfill-pen"></span>
-				<span class="reaper-delete iconicfill-x"></span>
-			</div>
 		</div>
 		
 		<div class="reaper-sidebar">
@@ -39,12 +34,28 @@
 				<div class="reaper-collapse current">
 					<div class="reaper-collapse-header">
 						<input type="text" class="reaper-column-name" placeholder="Column Name" />
+						<svg class="icon">
+							<use xlink:href="sprite.svg#trash" />
+						</svg>
+						<svg class="icon">
+							<use xlink:href="sprite.svg#chevron-top" />
+						</svg>
 					</div>
 					<div class="reaper-collapse-body">
 						<label>Resultant XPath:</label>
-						<input type="text" class="reaper-xpath-display" placeholder="XPath" />
+						<div class="reaper-xpath-display">
+							<input type="text" class="reaper-xpath-display" placeholder="XPath" />
+							<svg class="icon" title="Preview">
+								<use xlink:href="sprite.svg#eye" />
+							</svg>
+						</div>
 						<label>Constituent XPaths:</label>
-						<input type="text" class="reaper-xpath-constituent" placeholder="XPath" />
+						<div class="reaper-xpath-constituent">
+							<input type="text" placeholder="XPath" />
+							<svg class="icon">
+								<use xlink:href="sprite.svg#eyedropper" />
+							</svg>
+						</div>
 					</div>
 				</div>
 			</div>

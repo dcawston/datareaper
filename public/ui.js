@@ -53,21 +53,31 @@ function getPathTo(element) {
 
 $(document).ready(function() {
 	
-	function toggleSideBar() {
+	function toggleSideBar(state) {
 		
-		if ( $('.reaper-sidebar').hasClass('open') ) {
-			$('.reaper-sidebar').css('right', '-450px').removeClass('open');
+		var $sidebar = $('.reaper-sidebar');
+		
+		if ( state == 1 && !$sidebar.hasClass('open') ) {
+			$sidebar.css('right', '0').addClass('open');
+			
+		} else if ( state == 0 && $sidebar.hasClass('open') ) {
+			$sidebar.css('right', '-450px').removeClass('open');
+			
 		} else {
-			$('.reaper-sidebar').css('right', '0').addClass('open');
+			if ( !$sidebar.hasClass('open') ) {
+				$sidebar.css('right', '0').addClass('open');
+			} else {
+				$sidebar.css('right', '-450px').removeClass('open');
+			}
 		}
 		
 	}
 	
 	function injectXPathDetails(path) {
 		
-		$container = $('.reaper-sidebar .reaper-collapse.current');
+		var $container = $('.reaper-sidebar .reaper-collapse.current');
 		
-		$container.find('.reaper-xpath-display').val(path);
+		$container.find('.reaper-xpath-constituent').last().find('input').val(path);
 		
 	}
 	
@@ -99,7 +109,7 @@ $(document).ready(function() {
 			$('.reaper-viewport').css('width', $(elem).outerWidth()).css('height', $(elem).outerHeight());
 			$('.reaper-overlay').fadeIn();
 			
-			toggleSideBar();
+			toggleSideBar(1);
 			
 			var root = document.compatMode === 'CSS1Compat' ? document.documentElement : document.body;
 			var path = getPathTo(elem);

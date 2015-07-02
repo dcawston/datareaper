@@ -1,11 +1,4 @@
 @CHARSET "UTF-8";
-@import url(http://weloveiconfonts.com/api/?family=iconicfill);
-
-/* iconicfill */
-[class*="iconicfill-"]:before {
-  font-family: 'IconicFill', sans-serif;
-  padding: .2em .3em;
-}
 
 * {
 	border: none;
@@ -14,6 +7,17 @@
 
 hmtl, body {
 	margin: 0;
+}
+
+.icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	margin: .2em;
+	transition: .1s linear;
+}
+.icon:hover {
+	transform: scale(1.2);
 }
 
 .hidden {
@@ -137,6 +141,12 @@ hmtl, body {
 	background-color: #666;
 	color: #fff;
 	padding: .3em .4em;
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: stretch;
+}
+.reaper-collapse .reaper-collapse-header .icon {
+	fill: #fff;
 }
 .reaper-collapse .reaper-collapse-header input {
 	font-size: 1.3em;
@@ -144,7 +154,7 @@ hmtl, body {
 	background: transparent;
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	flex-grow: 1;
 }
 .reaper-collapse .reaper-collapse-header input:focus {
 	outline: none;
@@ -155,10 +165,19 @@ hmtl, body {
 	font-size: 1em;
 	padding: .3em;
 }
+.reaper-collapse .reaper-collapse-body .icon {
+	fill: #333;
+}
 .reaper-collapse .reaper-collapse-body label {
 	display: block;
 	margin: .5em 0 0;
 	border-bottom: 1px solid #aaa;
+}
+.reaper-collapse .reaper-collapse-body .reaper-xpath-constituent,
+.reaper-collapse .reaper-collapse-body .reaper-xpath-display {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: stretch;
 }
 .reaper-collapse .reaper-collapse-body input[type="text"] {
 	display: block;
@@ -167,7 +186,7 @@ hmtl, body {
 	background: transparent;
 	margin: .2em 0;
 	padding: 0;
-	width: 100%;
+	flex-grow: 1;
 	transition: .1s linear;
 }
 .reaper-collapse .reaper-collapse-body input[type="text"]:focus {
