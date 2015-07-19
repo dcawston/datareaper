@@ -34,10 +34,10 @@
 				<div class="reaper-collapse current">
 					<div class="reaper-collapse-header">
 						<input type="text" class="reaper-column-name" placeholder="Column Name" />
-						<svg class="icon">
+						<svg class="icon reaper-column-delete">
 							<use xlink:href="sprite.svg#trash" />
 						</svg>
-						<svg class="icon">
+						<svg class="icon toggle">
 							<use xlink:href="sprite.svg#chevron-top" />
 						</svg>
 					</div>
@@ -45,17 +45,23 @@
 						<label>Resultant XPath:</label>
 						<div class="reaper-xpath-display">
 							<input type="text" class="reaper-xpath-display" placeholder="XPath" />
-							<svg class="icon" title="Preview">
+							<svg class="icon reaper-xpath-preview">
 								<use xlink:href="sprite.svg#eye" />
 							</svg>
 						</div>
 						<label>Constituent XPaths:</label>
 						<div class="reaper-xpath-constituent">
 							<input type="text" placeholder="XPath" />
-							<svg class="icon">
+							<svg class="icon reaper-constituent-delete">
+								<use xlink:href="sprite.svg#minus" />
+							</svg>
+							<svg class="icon reaper-constituent-reselect">
 								<use xlink:href="sprite.svg#eyedropper" />
 							</svg>
 						</div>
+						<svg class="icon reaper-new-constituent">
+							<use xlink:href="sprite.svg#plus" />
+						</svg>
 					</div>
 				</div>
 			</div>

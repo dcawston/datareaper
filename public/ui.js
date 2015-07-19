@@ -53,6 +53,8 @@ function getPathTo(element) {
 
 $(document).ready(function() {
 	
+	var $columnClone = {};
+	
 	function toggleSideBar(state) {
 		
 		var $sidebar = $('.reaper-sidebar');
@@ -79,11 +81,26 @@ $(document).ready(function() {
 		
 		$container.find('.reaper-xpath-constituent').last().find('input').val(path);
 		
+		var result = '';
+		$container.find('.reaper-xpath-constituent input').each(function() {
+			
+			if ( result === '' ) {
+				result = $(this).val();
+			} else {
+				result = newGuess(result, $(this).val());
+			}
+			
+		});
+		
+		$container.find('.reaper-xpath-display input').val(result);
+		
 	}
 	
 	$('.reaper-dyn-content').load(function() {
 		subDocument = document.getElementsByClassName('reaper-dyn-content')[0].contentDocument;
 		$_ = $(subDocument);
+		
+		$_.find('a').unbind('click');
 		
 		$_.mousemove(function(e) {
 			$_.find('.reaper-hover-elem').removeClass('reaper-hover-elem').css('outline', 'none');
@@ -96,40 +113,31 @@ $(document).ready(function() {
 		});
 		
 		$_.find('body *').click(function(e) {
-			$_.find('.reaper-hover-elem').removeClass('reaper-hover-elem').css('outline', 'none');
-			
-			elem = subDocument.elementFromPoint(e.clientX, e.clientY);
-			
-			_top = $(elem).offset().top +
-					$('.reaper-header').outerHeight() -
-					$_.scrollTop();
-			_left = $(elem).offset().left;
-			
-			$('.reaper-viewport').css('top', _top).css('left', _left);
-			$('.reaper-viewport').css('width', $(elem).outerWidth()).css('height', $(elem).outerHeight());
-			$('.reaper-overlay').fadeIn();
-			
-			toggleSideBar(1);
-			
-			var root = document.compatMode === 'CSS1Compat' ? document.documentElement : document.body;
-			var path = getPathTo(elem);
-			var message = 'You clicked the element ' + path;
-			if (!e.ctrlKey) {
-				elementsToCompare.length = 0;
+			try {
+				
+				$_.find('.reaper-hover-elem').removeClass('reaper-hover-elem').css('outline', 'none');
+				
+				elem = subDocument.elementFromPoint(e.clientX, e.clientY);
+				
+				_top = $(elem).offset().top +
+						$('.reaper-header').outerHeight() -
+						$_.scrollTop();
+				_left = $(elem).offset().left;
+				
+				$('.reaper-viewport').css('top', _top).css('left', _left);
+				$('.reaper-viewport').css('width', $(elem).outerWidth()).css('height', $(elem).outerHeight());
+				$('.reaper-overlay').fadeIn();
+				
+				toggleSideBar(1);
+				
+				var root = document.compatMode === 'CSS1Compat' ? document.documentElement : document.body;
+				var path = getPathTo(elem);
+				
+				injectXPathDetails(path);
+				
+			} catch(e) {
+				console.error(e);
 			}
-			
-			elementsToCompare.push(path);
-			
-			if (elementsToCompare.length == 2) {
-				tmpGuess = newGuess(elementsToCompare[0],elementsToCompare[1]);
-				message = tmpGuess;
-			}
-			if (elementsToCompare.length > 2) {
-				var tmpGuess2 = newGuess(elementsToCompare[elementsToCompare.length - 1], tmpGuess);
-				tmpGuess = newGuess(tmpGuess2, tmpGuess);
-				message = tmpGuess;
-			}
-			injectXPathDetails(path);
 			
 			e.preventDefault();
 			return false;
@@ -146,6 +154,32 @@ $(document).ready(function() {
 		$('.reaper-overlay').fadeOut();
 		toggleSideBar();
 	});
+	
+	$('.reaper-collapse-header .icon.toggle').click(function() {
+		if ( $(this).parent().hasClass('up') ) {
+			$(this).css('transform', '');
+			$(this).parent().removeClass('up');
+			$(this).parentsUntil('.reaper-collapse').next().slideDown();
+		} else {
+			$(this).css('transform', 'rotate(180deg)');
+			$(this).parent().addClass('up');
+			$(this).parentsUntil('.reaper-collapse').next().slideUp();
+		}
+	});
+	
+	$('.reaper-collapse-body .icon.reaper-new-constituent').click(function() {
+		$new = $columnClone.find('.reaper-xpath-constituent').clone(true);
+		$(this).before($new);
+	});
+	
+	$('.reaper-collapse-body .reaper-xpath-constituent .icon.reaper-constituent-reselect').click(function() {
+		console.log("reselect not implemented yet");
+	});
+	$('.reaper-collapse-body .reaper-xpath-constituent .icon.reaper-constituent-delete').click(function() {
+		$(this).parent().remove();
+	});
+	
+	$columnClone = $('.reaper-collapse.current').clone(true);
 	
 	/**
 	 * Magical method to dynamically load
